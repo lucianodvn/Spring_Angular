@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+<meta charset="utf-8">
+<title>Cadastro de Clientes</title>
+<h1>Cadastro de Clientes</h1>
+<a href="#clientelist"><p>
+		Lista de Clientes <img alt="Lista de Cliente"
+			src="resources/img/list-icon.png">
+	</p></a>
+</head>
+<body>
+
+	<div class="col-lg-8 col-md-7" ng-init="carregarEstados();">
+		<div class="card">
+			<div class="content">
+				<form id="formCliente" ng-submit="salvarCliente();">
+
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<img alt="Foto" id="imagemCliente" src=""
+									style="width: 118px; height: 140px;" border="0"> <input
+									type="file" id="file" onchange="javascript:visualizarImg();">
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row">
+						<div class="col-md-10">
+							<div class="form-group">
+								<label>Nome</label> <input type="text" ng-model="cliente.nome"
+									class="form-control border-input" placeholder="Nome"
+									required="required">
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-10">
+							<div class="form-group">
+								<label for="endereco">Endereço</label> <input type="text"
+									ng-model="cliente.endereco" class="form-control border-input"
+									placeholder="Endereço" required="required"">
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="telefone">Telefone</label> <input type="text"
+									ng-model="cliente.telefone" class="form-control border-input"
+									placeholder="Telefone" required="required" id="telefone">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Sexo</label> <select ng-model="cliente.sexo"
+									class="form-control border">
+									<option value="Masculino">Masculino</option>
+									<option value="Feminino">Feminino</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>CPF</label> <input type="text"
+									class="form-control border-input" id="cpf" name="cpf"
+									required="required" placeholder="CPF" ng-model="cliente.cpf">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Estado</label> <select ng-model="cliente.estados.id"
+									id="selectEstados" class="form-control border"
+									onchange="javascript:carregarCidadesChrome(this);">
+									<option value="">Selecione o Estado</option>
+									<option ng-repeat="est in dataEstados"
+										ng-click="carregarCidades(est)" value="{{est.id}}">{{est.nome}}</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Cidade</label> <select id="selectCidades"
+									ng-model="cliente.cidades.id" class="form-control border">
+									<option value="">Seleciona a Cidade</option>
+									<option ng-repeat="cid in cidades" value="{{cid.id}}">{{cid.nome}}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<button type="submit" class="btn btn-info btn-fill btn-wd">Cadastrar</button>
+					<button type="reset" class="btn btn-info btn-fill btn-wd">Limpar</button>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	$('#telefone').mask('(99) 99999-9999');
+	$('#cpf').mask('999.999.999-99');
+</script>
+</html>

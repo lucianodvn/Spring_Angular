@@ -1,0 +1,60 @@
+<html ng-app="loja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<h1>Loja On-Line de Livros</h1>
+<br />
+<br />
+<a ng-click="fecharPedido();">{{carrinhoLivro.length}} Itens no Carrinho 
+<img alt="Carrinho" title="Carrinho de Livro" src="resources/img/carrinho.png" border="0" height="40px;" width="40px;">
+</a>
+<br/>
+<br/>
+<div class="col-lg-8 col-md-7" ng-init="listarLivros(1);">
+	<div class="card">
+		<div class="content">
+			<form id="formLivro">
+				<div class="row">
+					<div class="col-md-3" ng-repeat="livro in data">
+						<div class="form-group">
+							<center>
+								<label>{{livro.titulo}}</label>
+							</center>
+							<center>
+								<img alt="Foto de Capa" id="imagemLivro" src="{{livro.foto}}"
+									style="width: 120px; height: 150px;" border="0">
+							</center>
+							<div class="text-center">
+								<label onclick="mostrarDescricao(this.title);"
+									title="{{livro.descricao}}">Ver Descrição</label> <br /> <label>{{livro.valor}}</label>
+								<br />
+								<center>
+									<button type="button" ng-click="addLivro(livro.id);"
+										class="btn btn-danger btn-fill btn-wd">Comprar</button>
+								</center>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			<br /> <br />
+			<div class="text-center">
+				<button type="button" class="btn btn-info btn-fill btn-wd"
+					ng-click="anterior();">Anterior</button>
+				<button type="button" class="btn btn-info btn-fill btn-wd"
+					ng-click="proximo();">Próximo</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="descricaoLivro" title="Descrição Resumida do Livro"
+	style="height: 200px; width: 400px;"></div>
+<script>
+	function mostrarDescricao(descricao) {
+		$('#descricaoLivro').html('<p>' + descricao + '</p>').dialog({
+			modal : true
+		});
+	}
+</script>
+</html>

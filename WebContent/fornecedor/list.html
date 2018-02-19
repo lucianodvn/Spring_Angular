@@ -1,0 +1,82 @@
+<html ng-app="loja">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+<meta charset="utf-8">
+</head>
+<body>
+	<h1>Lista de Fornecedores</h1>
+	<a href="#fornecedor/cadastro"><p>Novo
+	<img alt="Novo" src="resources/img/add-icon.png" border="0">
+	</p></a>
+	
+	<label>Filtro: <input type="text" ng-model="filtro" class="form-control border-input" /></label><br/>
+	<br/>
+	
+	<div ng-controller="fornecedorController" ng-init="listarFornecedor(1)">
+		<div class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="header">
+								<h4 class="title">Tabela de fornecedores</h4>
+
+							</div>
+							<div class="content table-responsive table-full-width">
+								<table class="table table-striped">
+									<thead>
+										<!--<th>ID</th>-->
+										<th>Foto</th>
+										<th>Nome Fantasia</th>
+										<th>Razão Social</th>
+										<!--<th>Endereço</th>-->
+										<th>Telefone</th>
+										<!--<th>CNPJ</th>-->
+										<!--<th>Inscrição Estadual</th>-->
+										<th>Cidade</th>
+										<th>Estado</th>
+										<th>Editar</th>
+										<th>Excluir</th>
+									</thead>
+									<tbody>
+										<tr ng-repeat="fornecedor in data | filter:filtro">
+											<!--<td>{{fornecedor.id}}</td>-->
+											<td><img src="{{fornecedor.foto}}" style="width: 40px; height: 43px;" /></td>
+											<td>{{fornecedor.nomeFantasia}}</td>
+											<td>{{fornecedor.razaoSocial}}</td>
+											<!--<td>{{fornecedor.endereco}}</td>-->
+											<td>{{fornecedor.telefone}}</td>
+											<!--<td>{{fornecedor.cnpj}}</td>-->
+											<!--<td>{{fornecedor.inscricaoEstadual}}</td>-->
+											<td>{{fornecedor.cidades.nome}}</td>
+											<td>{{fornecedor.estados.nome}}</td>
+											<td><a href ng-click="editarFornecedor(fornecedor.id)">Editar 
+											<img alt="Editar" src="resources/img/edit-icon.png">
+											</a></td>
+												
+											<td><a href ng-click="removerFornecedor(fornecedor.id)">Excluir
+											<img alt="Excluir" src="resources/img/delete-icon.png">
+											</a></td>
+										</tr>
+									</tbody>
+								</table>
+								<center>
+								<button type="button" class="btn btn-info btn-fill btn-wd" ng-click="anterior();">Anterior</button>
+								<button type="button" class="btn btn-info btn-fill btn-wd" ng-click="proximo();">Próximo</button>
+								</center>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script>
+	$('#telefone').mask('(99) 9999-9999');
+	$('#cnpj').mask('99.999.999/9999-99');
+	$('#inscricaoEstadual').mask('999.999.999.999');
+</script>
+</html>

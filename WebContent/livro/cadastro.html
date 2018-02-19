@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+<meta charset="utf-8">
+<title>Cadastro de Livros</title>
+<h1>Cadastro de Livros</h1>
+<a href="#livrolist"><p>
+		Lista de Livros <img alt="Lista de Livros"
+			src="resources/img/list-icon.png">
+	</p></a>
+</head>
+<body>
+
+	<div class="col-lg-8 col-md-7"
+		ng-init="listarFornecedores();">
+		<div class="card">
+		<div class="content">
+			<form id="formLivro" ng-submit="salvarLivro();">
+
+				<div class="row">
+					<div class="col-md-3">
+						<div class="form-group">
+							<img alt="Foto" id="imagemLivro" src=""
+								style="width: 118px; height: 140px;" border="0"> <input
+								type="file" id="file" onchange="javascript:visualizarImg();">
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-10">
+						<div class="form-group">
+							<label>Título</label> <input type="text" ng-model="livro.titulo"
+								class="form-control border-input" placeholder="Título"
+								required="required">
+						</div>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-md-10">
+						<div class="form-group">
+							<label>Autor</label> <input type="text" ng-model="livro.autor"
+								class="form-control border-input" placeholder="autor"
+								required="required">
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-10">
+						<div class="form-group">
+							<label for="descricao">Descrição</label> <textarea cols="12" rows="5"
+								ng-model="livro.descricao" class="form-control border-input"
+								placeholder="Descrição" required="required"></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-10">
+						<div class="form-group">
+							<label for="isbn">ISBN</label> <input type="number"
+								ng-model="livro.isbn" class="form-control border-input"
+								placeholder="ISBN" required="required">
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>Ano</label> <input type="number"
+								class="form-control border-input" id="ano" name="ano"
+								required="required" placeholder="Ano" ng-model="livro.ano">
+						</div>
+					</div>
+
+
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>Páginas</label> <input type="number"
+								ng-model="livro.paginas" class="form-control border-input"
+								placeholder="Páginas" required="required" id="pagina">
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Fornecedor</label> <select ng-model="livro.fornecedor.id"
+								id="selectFornecedor" class="form-control border">
+								<option value="">Selecione o Fornecedor</option>
+								<option ng-repeat="forn in fornecedoresList"
+									value="{{forn.id}}">{{forn.nomeFantasia}}</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Preço</label> <input  id="valor"
+								ng-model="livro.valor" class="form-control border-input"
+								placeholder="Preço" required="required">
+						</div>
+					</div>
+				</div>
+
+				<button type="submit" class="btn btn-info btn-fill btn-wd">Cadastrar</button>
+				<button type="reset" class="btn btn-info btn-fill btn-wd">Limpar</button>
+
+			</form>
+		</div>
+	</div>
+
+</body>
+<script>
+	$('#ano').mask('9999');
+	$('#valor').maskMoney({
+		prefix : 'R$',
+		thousands : '.',
+		decimal : ',',
+		affixesStay : true
+	});
+</script>
+
+</html>

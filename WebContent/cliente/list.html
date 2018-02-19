@@ -1,0 +1,79 @@
+<html ng-app="loja">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+<meta charset="utf-8">
+</head>
+<body>
+	<h1>Lista de Clientes</h1>
+	<a href="#cliente/cadastro"><p>Novo
+	<img alt="Novo" src="resources/img/add-icon.png" border="0">
+	</p></a>
+	
+	<label>Filtro: <input type="text" ng-model="filtro" class="form-control border-input" /></label><br/>
+	<br/>
+	
+	<div ng-controller="clienteController" ng-init="listarClientes(1)">
+		<div class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="header">
+								<h4 class="title">Tabela de Clientes</h4>
+
+							</div>
+							<div class="content table-responsive table-full-width">
+								<table class="table table-striped">
+									<thead>
+										<!--<th>ID</th>-->
+										<th>Foto</th>
+										<th>Nome</th>
+										<th>Endereço</th>
+										<th>Telefone</th>
+										<!--<th>Sexo</th>-->
+										<!--<th>CPF</th>-->
+										<th>Cidade</th>
+										<th>Estado</th>
+										<th>Editar</th>
+										<th>Excluir</th>
+									</thead>
+									<tbody>
+										<tr ng-repeat="cliente in data | filter:filtro">
+											<!--<td>{{cliente.id}}</td>-->
+											<td><img src="{{cliente.foto}}" style="width: 40px; height: 43px;" /></td>
+											<td>{{cliente.nome}}</td>
+											<td>{{cliente.endereco}}</td>
+											<td>{{cliente.telefone}}</td>
+											<!--<td>{{cliente.sexo}}</td>-->
+											<!--<td>{{cliente.cpf}}</td>-->
+											<td>{{cliente.cidades.nome}}</td>
+											<td>{{cliente.estados.nome}}</td>
+											<td><a href ng-click="editarCliente(cliente.id)">Editar 
+											<img alt="Editar" src="resources/img/edit-icon.png">
+											</a></td>
+												
+											<td><a href ng-click="removerCliente(cliente.id)">Excluir
+											<img alt="Excluir" src="resources/img/delete-icon.png">
+											</a></td>
+										</tr>
+									</tbody>
+								</table>
+								<center>
+								<button type="button" class="btn btn-info btn-fill btn-wd" ng-click="anterior();">Anterior</button>
+								<button type="button" class="btn btn-info btn-fill btn-wd" ng-click="proximo();">Próximo</button>
+								</center>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script>
+	$('#telefone').mask('(99) 99999-9999');
+	$('#cpf').mask('999.999.999-99');
+</script>
+</html>
